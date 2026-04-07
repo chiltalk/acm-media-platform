@@ -1,8 +1,9 @@
-name: Deploy
+name: Deploy to Cloudflare Pages
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -19,9 +20,12 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - uses: amondnet/vercel-action@v25
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: acm-media-platform
+          directory: .next
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: '3'
