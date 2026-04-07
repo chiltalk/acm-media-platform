@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { supabase } from '@/lib/supabase';
 import AdBanner from '@/components/ads/AdBanner';
 
@@ -34,15 +35,15 @@ export default async function BlogPage() {
 
   return (
     <>
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
+      {/* Page Header */}
+      <div className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
           <p className="text-lg text-gray-600">
             Latest articles, news, and insights from our team
           </p>
         </div>
-      </header>
+      </div>
 
       {/* Top Ad Banner */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,7 +51,7 @@ export default async function BlogPage() {
       </div>
 
       {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {posts.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-500">No articles published yet. Check back soon!</p>
@@ -63,14 +64,14 @@ export default async function BlogPage() {
                 className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
               >
                 {post.cover_image_url && (
-                  <Link href={`/blog/${post.slug}`}>
-                    <div className="aspect-video bg-gray-100">
-                      <img
-                        src={post.cover_image_url}
-                        alt={post.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                  <Link href={`/blog/${post.slug}`} className="block aspect-video relative">
+                    <Image
+                      src={post.cover_image_url}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
                   </Link>
                 )}
 
@@ -124,16 +125,7 @@ export default async function BlogPage() {
             )}
           </div>
         )}
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <p className="text-center text-gray-600">
-            © {new Date().getFullYear()} ACM Media Platform. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      </div>
     </>
   );
 }

@@ -59,24 +59,20 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <Link
-            href="/blog"
-            className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 mb-4"
-          >
-            ← Back to Blog
-          </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">{category.name}</h1>
-          {category.description && (
-            <p className="text-lg text-gray-600">{category.description}</p>
-          )}
-        </div>
-      </header>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Link
+          href="/blog"
+          className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 mb-4"
+        >
+          ← Back to Blog
+        </Link>
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">{category.name}</h1>
+        {category.description && (
+          <p className="text-lg text-gray-600">{category.description}</p>
+        )}
+      </div>
 
-      {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {posts.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-500">No articles in this category yet.</p>
@@ -144,16 +140,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             ))}
           </div>
         )}
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <p className="text-center text-gray-600">
-            © {new Date().getFullYear()} ACM Media Platform. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      </div>
     </>
   );
 }
