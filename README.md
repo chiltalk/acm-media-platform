@@ -41,6 +41,8 @@ A modern content management and media platform built with Next.js 15, Supabase, 
 2. **Install dependencies**
    ```bash
    npm install
+   # Or use the setup script
+   ./scripts/setup.sh
    ```
 
 3. **Set up environment variables**
@@ -57,10 +59,27 @@ A modern content management and media platform built with Next.js 15, Supabase, 
 4. **Run the development server**
    ```bash
    npm run dev
+   # Or use the dev helper script
+   ./scripts/dev.sh dev
    ```
 
 5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🛠️ Development Scripts
+
+The project includes helper scripts for common development tasks:
+
+- `./scripts/setup.sh` - Initial setup and configuration
+- `./scripts/dev.sh [command]` - Development helper
+  - `dev` - Start development server
+  - `build` - Build for production
+  - `lint` - Run linter
+  - `type-check` - Run TypeScript type check
+  - `clean` - Clean build artifacts
+  - `install` - Install dependencies
+  - `update` - Update dependencies
+- `./scripts/verify-deployment.sh [url]` - Verify deployment health
 
 ## 📚 Documentation
 
